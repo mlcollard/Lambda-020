@@ -30,7 +30,9 @@ int main(int argc, char* argv[]) {
     {
         Framework framework;
 
-        std::function<int(std::string_view)> f;
+        std::function<int(std::string_view)> f = [](std::string_view s)->int {
+            return s.size() + 2;
+        };
 
         if (f) {
             assert(framework.apply(f, "a") == 3);
