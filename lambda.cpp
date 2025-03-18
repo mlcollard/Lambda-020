@@ -105,7 +105,12 @@ int main(int argc, char* argv[]) {
 
         std::istringstream input("2");
 
-        std::function<int(std::string_view)> f;
+        std::function<int(std::string_view)> f = [&input](std::string_view s) {
+            int increment;
+            input >> increment;
+
+            return s.size() + increment;
+        };
 
         if (f) {
             assert(framework.apply(f, "a") == 3);
